@@ -1,0 +1,31 @@
+{
+  "name": "elastic-client-highlight-builder",
+  "version": "1.0.0",
+  "authors": [
+    "Next Century Corporation"
+  ],
+  "description": "A polymer web component that builds an elasticjs highlight.",
+  "keywords": [
+    "Elasticsearch",
+    "elastic",
+    "ElasticUI",
+    "web-component",
+    "polymer"
+  ],
+  "main": "elastic-client-highlight-builder.html",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "https://github.com/DigElements/elastic-client-highlight-builder/",
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.2.0",
+    "elastic-client": "DigElements/elastic-client#^0.0.3",
+    "dig-common": "DigElements/dig-common#^0.0.4"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "^4.0.0"
+  }
+}

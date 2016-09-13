@@ -1,0 +1,88 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../dig-common/dig-common.html">
+
+<!--
+A polymer web component that builds an elasticjs highlight.
+
+Example:
+
+        <elastic-client-highlight-builder
+          fields="[_all]"
+          pre-tags="<highlight>"
+          post-tags="</highlight>"
+          number-of-fragments="0"
+          require-field-match="false"
+          ejs-highlight="{{highlight}}">
+        </elastic-client-highlight-builder>
+
+@demo demo/index.html
+-->
+
+<dom-module id="elastic-client-highlight-builder">
+  <template>
+  </template>
+
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'elastic-client-highlight-builder',
+
+      properties: {
+        fields: {
+          type: Object
+        },
+
+        preTags: {
+          type: String
+        },
+
+        postTags: {
+          type: String
+        },
+
+        numberOfFragments: {
+          type: Number
+        },
+
+        requireFieldMatch: {
+          type: Boolean,
+          value: false
+        },
+
+        ejsHighlight: {
+          type: Object,
+          notify: true
+        }
+      },
+
+      observers: [
+        '_buildHighlight(fields, preTags, postTags, numberOfFragments, requireFieldMatch)'
+      ],
+
+      _buildHighlight: function(fields, preTags, postTags, numberOfFragments, requireFieldMatch) {
+        var highlight = new ejs.Highlight(fields);
+
+        if(preTags) {
+          highlight.preTags(preTags);
+        }
+
+        if(postTags) {
+          highlight.postTags(postTags);
+        }
+
+        if(numberOfFragments !== undefined) {
+          highlight.numberOfFragments(numberOfFragments);
+        }
+
+        if(requireFieldMatch !== undefined) {
+          highlight.requireFieldMatch(requireFieldMatch);
+        }
+
+        this.set('ejsHighlight', highlight);
+      }
+    });
+  })();
+  </script>
+</dom-module>
