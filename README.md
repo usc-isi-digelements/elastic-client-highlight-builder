@@ -5,7 +5,7 @@ A polymer web component that builds an elasticjs highlight.
 Example:
 ```html
         <elastic-client-highlight-builder
-          fields="[_all]"
+          fields='["*"]'
           pre-tags="<highlight>"
           post-tags="</highlight>"
           number-of-fragments="0"
