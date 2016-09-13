@@ -30,27 +30,45 @@ Example:
       is: 'elastic-client-highlight-builder',
 
       properties: {
+        /**
+         * The fields for the elasticsearch highlight.
+         */
         fields: {
           type: Object
         },
 
+        /**
+         * The pre-tags for the elasticsearch highlight.
+         */
         preTags: {
           type: String
         },
 
+        /**
+         * The post-tags for the elasticsearch highlight.
+         */
         postTags: {
           type: String
         },
 
+        /**
+         * The number of fragments for the elasticsearch highlight.
+         */
         numberOfFragments: {
           type: Number
         },
 
+        /**
+         * Whether field matches are required for the elasticsearch highlight.
+         */
         requireFieldMatch: {
           type: Boolean,
           value: false
         },
 
+        /**
+         * The built elasticjs highlight object.
+         */
         ejsHighlight: {
           type: Object,
           notify: true
@@ -61,6 +79,9 @@ Example:
         '_buildHighlight(fields, preTags, postTags, numberOfFragments, requireFieldMatch)'
       ],
 
+      /**
+       * Builds the elasticjs highlight object.
+       */
       _buildHighlight: function(fields, preTags, postTags, numberOfFragments, requireFieldMatch) {
         var highlight = new ejs.Highlight(fields);
 
