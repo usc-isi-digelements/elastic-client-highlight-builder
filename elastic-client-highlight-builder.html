@@ -71,7 +71,8 @@ Example:
          */
         ejsHighlight: {
           type: Object,
-          notify: true
+          notify: true,
+          readOnly: true
         }
       },
 
@@ -101,7 +102,7 @@ Example:
           highlight.requireFieldMatch(requireFieldMatch);
         }
 
-        this.set('ejsHighlight', highlight);
+        this._setEjsHighlight(highlight);
       }
     });
   })();
