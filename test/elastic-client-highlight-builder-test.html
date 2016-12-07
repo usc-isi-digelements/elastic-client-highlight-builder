@@ -31,6 +31,10 @@
         expect(component.ejsHighlight).to.not.exist;
       });
 
+      test('template is empty', function() {
+        expect(Polymer.dom(component.root).children.length).to.equal(0);
+      });
+
       test('setting the fields does not yet build the highlight', function() {
         component.fields = ['field1'];
         expect(component.ejsHighlight).to.not.exist;
