@@ -1,19 +1,20 @@
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../dig-common/dig-common.html">
+<script src="../elastic.js/dist/elastic.js"></script>
 
 <!--
-A polymer web component that builds an elasticjs highlight.
+A Polymer Element that builds an elasticjs highlight object.
 
-Example:
-
-        <elastic-client-highlight-builder
-          fields='["*"]'
-          pre-tags="<highlight>"
-          post-tags="</highlight>"
-          number-of-fragments="0"
-          require-field-match="false"
-          ejs-highlight="{{highlight}}">
-        </elastic-client-highlight-builder>
+### Example
+```html
+<elastic-client-highlight-builder
+  fields='["*"]'
+  pre-tags="<highlight>"
+  post-tags="</highlight>"
+  number-of-fragments="0"
+  require-field-match="false"
+  ejs-highlight="{{highlight}}">
+</elastic-client-highlight-builder>
+```
 
 @demo demo/index.html
 -->
@@ -28,35 +29,56 @@ Example:
 
       properties: {
         /**
+         * (Required)
+         *
          * The fields for the elasticsearch highlight.
+         *
+         * @type {Array}
          */
         fields: {
-          type: Object
+          type: Array
         },
 
         /**
+         * (Required)
+         *
          * The pre-tags for the elasticsearch highlight.
+         *
+         * @type {String}
          */
         preTags: {
           type: String
         },
 
         /**
+         * (Required)
+         *
          * The post-tags for the elasticsearch highlight.
+         *
+         * @type {String}
          */
         postTags: {
           type: String
         },
 
         /**
+         * (Required)
+         *
          * The number of fragments for the elasticsearch highlight.
+         *
+         * @type {Number}
          */
         numberOfFragments: {
           type: Number
         },
 
         /**
+         * (Optional)
+         *
          * Whether field matches are required for the elasticsearch highlight.
+         *
+         * @type {Boolean}
+         * @default false
          */
         requireFieldMatch: {
           type: Boolean,
@@ -64,7 +86,11 @@ Example:
         },
 
         /**
+         * (Output)
+         *
          * The built elasticjs highlight object.
+         *
+         * @type {Object}
          */
         ejsHighlight: {
           type: Object,
@@ -79,6 +105,12 @@ Example:
 
       /**
        * Builds the elasticjs highlight object.
+       *
+       * @param {Array} fields
+       * @param {String} preTags
+       * @param {String} postTags
+       * @param {Number} numberOfFragments
+       * @param {Boolean} requireFieldMatch
        */
       _buildHighlight: function(fields, preTags, postTags, numberOfFragments, requireFieldMatch) {
         var highlight = new ejs.Highlight(fields);
