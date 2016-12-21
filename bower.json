@@ -1,10 +1,9 @@
 {
   "name": "elastic-client-highlight-builder",
-  "version": "1.0.1",
-  "authors": [
-    "Next Century Corporation"
-  ],
   "description": "A Polymer Element that builds an elasticjs highlight object.",
+  "version": "1.0.1",
+  "authors": ["Next Century Corporation"],
+  "license": "Apache-2.0",
   "keywords": [
     "web-component",
     "polymer",
