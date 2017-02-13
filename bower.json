@@ -1,7 +1,7 @@
 {
   "name": "elastic-client-highlight-builder",
   "description": "A Polymer Element that builds an elasticjs highlight object.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "authors": ["Next Century Corporation"],
   "license": "Apache-2.0",
   "keywords": [
@@ -18,7 +18,7 @@
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^1.7.0",
-    "elastic.js": "DigElements/elastic.js#6639a1030eb071fb762bcdd742fdbf037fb57b24"
+    "elasticjs-import": "DigElements/elasticjs-import#~1.0.0"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.1.7",
