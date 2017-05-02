@@ -15,89 +15,89 @@ limitations under the License.
 -->
 
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-  <script src="../../web-component-tester/browser.js"></script>
-  <link rel="import" href="../elastic-client-highlight-builder.html">
-</head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+    <link rel="import" href="../elastic-client-highlight-builder.html">
+  </head>
 
-<body>
-  <test-fixture id="elastic-client-highlight-builder-fixture">
-    <template>
-      <elastic-client-highlight-builder></elastic-client-highlight-builder>
-    </template>
-  </test-fixture>
+  <body>
+    <test-fixture id="elastic-client-highlight-builder-fixture">
+      <template>
+        <elastic-client-highlight-builder></elastic-client-highlight-builder>
+      </template>
+    </test-fixture>
 
-  <script>
-    suite('elastic-client-highlight-builder tests', function() {
-      var element;
+    <script>
+      suite('elastic-client-highlight-builder tests', function() {
+        var element;
 
-      setup(function() {
-        element = fixture('elastic-client-highlight-builder-fixture');
+        setup(function() {
+          element = fixture('elastic-client-highlight-builder-fixture');
+        });
+
+        test('properties are not set', function() {
+          expect(element.fields).to.not.exist;
+          expect(element.preTags).to.not.exist;
+          expect(element.postTags).to.not.exist;
+          expect(element.numberOfFragments).to.not.exist;
+          expect(element.requireFieldMatch).to.be.false;
+          expect(element.ejsHighlight).to.not.exist;
+        });
+
+        test('template is empty', function() {
+          expect(Polymer.dom(element.root).children.length).to.equal(0);
+        });
+
+        test('setting the fields does not yet build the highlight', function() {
+          element.fields = ['field1'];
+          expect(element.ejsHighlight).to.not.exist;
+        });
+
+        test('setting all properties does build the highlight', function() {
+          element.fields = ['field1'];
+          element.preTags = '<tag>';
+          element.postTags = '</tag>';
+          element.numberOfFragments = 10;
+          element.requireFieldMatch = true;
+          expect(element.ejsHighlight).to.exist;
+          expect(element.ejsHighlight.toJSON()).to.deep.equal(ejs.Highlight(['field1']).preTags('<tag>').postTags('</tag>').numberOfFragments(10).requireFieldMatch(true).toJSON());
+        });
+
+        test('can set non-fields properties to null', function() {
+          element.fields = ['field1'];
+          element.preTags = null;
+          element.postTags = null;
+          element.numberOfFragments = null;
+          element.requireFieldMatch = null;
+          expect(element.ejsHighlight).to.exist;
+          expect(element.ejsHighlight.toJSON()).to.deep.equal(ejs.Highlight(['field1']).toJSON());
+        });
+
+        test('can set fields to string', function() {
+          element.fields = 'field1';
+          element.preTags = null;
+          element.postTags = null;
+          element.numberOfFragments = null;
+          element.requireFieldMatch = null;
+          expect(element.ejsHighlight).to.exist;
+          expect(element.ejsHighlight.toJSON()).to.deep.equal(ejs.Highlight('field1').toJSON());
+        });
+
+        test('does rebuild highlight', function() {
+          element.fields = ['field1'];
+          element.preTags = '<tag>';
+          element.postTags = '</tag>';
+          element.numberOfFragments = 10;
+          element.requireFieldMatch = true;
+          expect(element.ejsHighlight).to.exist;
+          expect(element.ejsHighlight.toJSON()).to.deep.equal(ejs.Highlight(['field1']).preTags('<tag>').postTags('</tag>').numberOfFragments(10).requireFieldMatch(true).toJSON());
+          element.fields = 'field2';
+          expect(element.ejsHighlight.toJSON()).to.deep.equal(ejs.Highlight('field2').preTags('<tag>').postTags('</tag>').numberOfFragments(10).requireFieldMatch(true).toJSON());
+        });
       });
-
-      test('properties are not set', function() {
-        expect(element.fields).to.not.exist;
-        expect(element.preTags).to.not.exist;
-        expect(element.postTags).to.not.exist;
-        expect(element.numberOfFragments).to.not.exist;
-        expect(element.requireFieldMatch).to.be.false;
-        expect(element.ejsHighlight).to.not.exist;
-      });
-
-      test('template is empty', function() {
-        expect(Polymer.dom(element.root).children.length).to.equal(0);
-      });
-
-      test('setting the fields does not yet build the highlight', function() {
-        element.fields = ['field1'];
-        expect(element.ejsHighlight).to.not.exist;
-      });
-
-      test('setting all properties does build the highlight', function() {
-        element.fields = ['field1'];
-        element.preTags = '<tag>';
-        element.postTags = '</tag>';
-        element.numberOfFragments = 10;
-        element.requireFieldMatch = true;
-        expect(element.ejsHighlight).to.exist;
-        expect(element.ejsHighlight.toJSON()).to.deep.equal(ejs.Highlight(['field1']).preTags('<tag>').postTags('</tag>').numberOfFragments(10).requireFieldMatch(true).toJSON());
-      });
-
-      test('can set non-fields properties to null', function() {
-        element.fields = ['field1'];
-        element.preTags = null;
-        element.postTags = null;
-        element.numberOfFragments = null;
-        element.requireFieldMatch = null;
-        expect(element.ejsHighlight).to.exist;
-        expect(element.ejsHighlight.toJSON()).to.deep.equal(ejs.Highlight(['field1']).toJSON());
-      });
-
-      test('can set fields to string', function() {
-        element.fields = 'field1';
-        element.preTags = null;
-        element.postTags = null;
-        element.numberOfFragments = null;
-        element.requireFieldMatch = null;
-        expect(element.ejsHighlight).to.exist;
-        expect(element.ejsHighlight.toJSON()).to.deep.equal(ejs.Highlight('field1').toJSON());
-      });
-
-      test('does rebuild highlight', function() {
-        element.fields = ['field1'];
-        element.preTags = '<tag>';
-        element.postTags = '</tag>';
-        element.numberOfFragments = 10;
-        element.requireFieldMatch = true;
-        expect(element.ejsHighlight).to.exist;
-        expect(element.ejsHighlight.toJSON()).to.deep.equal(ejs.Highlight(['field1']).preTags('<tag>').postTags('</tag>').numberOfFragments(10).requireFieldMatch(true).toJSON());
-        element.fields = 'field2';
-        expect(element.ejsHighlight.toJSON()).to.deep.equal(ejs.Highlight('field2').preTags('<tag>').postTags('</tag>').numberOfFragments(10).requireFieldMatch(true).toJSON());
-      });
-    });
-  </script>
-</body>
+    </script>
+  </body>
 </html>

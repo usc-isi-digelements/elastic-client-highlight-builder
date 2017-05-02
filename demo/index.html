@@ -15,40 +15,40 @@ limitations under the License.
 -->
 
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-  <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
-  <link rel="import" href="../elastic-client-highlight-builder.html">
-</head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="../elastic-client-highlight-builder.html">
+  </head>
 
-<body unresolved>
-  <template is="dom-bind" id="demo">
-    <p>Fields: ["*"]</p>
-    <p>Pre Tags: &lthighlight&gt</p>
-    <p>Post Tags: &lt/highlight&gt</p>
-    <p>Number of Fragments: 0</p>
-    <p>Require Field Match: false</p>
+  <body unresolved>
+    <template is="dom-bind" id="demo">
+      <p>Fields: ["*"]</p>
+      <p>Pre Tags: &lthighlight&gt</p>
+      <p>Post Tags: &lt/highlight&gt</p>
+      <p>Number of Fragments: 0</p>
+      <p>Require Field Match: false</p>
 
-    <elastic-client-highlight-builder
-      fields='["*"]'
-      pre-tags="<highlight>"
-      post-tags="</highlight>"
-      number-of-fragments="0"
-      ejs-highlight="{{highlight}}">
-    </elastic-client-highlight-builder>
+      <elastic-client-highlight-builder
+        fields='["*"]'
+        pre-tags="<highlight>"
+        post-tags="</highlight>"
+        number-of-fragments="0"
+        ejs-highlight="{{highlight}}">
+      </elastic-client-highlight-builder>
 
-    <p><span>ElasticJS Highlight:</span><span>[[toJSON(highlight)]]</span></p>
-  </template>
-  <script>
-    (function(document) {
-      var demo = document.querySelector('#demo');
+      <p><span>ElasticJS Highlight:</span><span>[[toJSON(highlight)]]</span></p>
+    </template>
+    <script>
+      (function(document) {
+        var demo = document.querySelector('#demo');
 
-      demo.toJSON = function(data) {
-        console.log("toJSON " + JSON.stringify(data));
+        demo.toJSON = function(data) {
+          console.log("toJSON " + JSON.stringify(data));
           return JSON.stringify(data);
-      }
-    })(document);
-  </script>
-</body>
+        };
+      })(document);
+    </script>
+  </body>
 </html>

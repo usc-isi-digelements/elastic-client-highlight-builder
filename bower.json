@@ -1,7 +1,7 @@
 {
   "name": "elastic-client-highlight-builder",
   "description": "A Polymer Element that builds an elasticjs highlight object.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "authors": ["Next Century Corporation"],
   "license": "Apache-2.0",
   "keywords": [
@@ -10,7 +10,6 @@
     "elastic.js"
   ],
   "main": "elastic-client-highlight-builder.html",
-  "license": "http://polymer.github.io/LICENSE.txt",
   "homepage": "https://github.com/DigElements/elastic-client-highlight-builder/",
   "ignore": [
     "/.*",
